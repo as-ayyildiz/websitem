@@ -1,7 +1,6 @@
 import type { ImageMetadata } from 'astro';
 import transkriptDashboard from '../assets/images/transkript/dashboard.png';
 import bitkicepteLogo from '../assets/images/sera/bitkicepte-logo.png';
-import takimFotografi from '../assets/images/sera/takim-fotografi.png';
 import seraModel from '../assets/images/sera/sera-model.png';
 import gelistirmeSureci from '../assets/images/sera/gelistirme-sureci.png';
 import masaustuArayuz from '../assets/images/sera/masaustu-arayuz.png';
@@ -40,7 +39,6 @@ export const projects: Project[] = [
 		],
 		logo: bitkicepteLogo,
 		images: [
-			{ src: takimFotografi, alt: 'düHackathon 2026 birincilik — ekip ve sera modeli' },
 			{ src: seraModel, alt: 'Bitmiş sera modeli, gece aydınlatmasıyla' },
 			{ src: gelistirmeSureci, alt: 'Geliştirme süreci — devre, montaj ve ekip çalışması' },
 			{ src: masaustuArayuz, alt: 'BitkiCepte masaüstü kontrol arayüzü' },
