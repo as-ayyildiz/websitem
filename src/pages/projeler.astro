@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects } from '../data/projects';
+---
+
+<Layout
+	title="Projeler — Ali Ayyıldız"
+	description="Ali Ayyıldız'ın üzerinde çalıştığı projeler."
+>
+	<main class="wrap section">
+		<p class="mono eyebrow"><span class="hash">#</span> projeler</p>
+		<h1>Projeler</h1>
+		<p class="intro">Üzerinde çalıştığım ve emek verdiğim projeler.</p>
+
+		<div class="project-list">
+			{projects.map((project) => <ProjectCard project={project} />)}
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.eyebrow {
+		font-size: 0.85rem;
+		color: var(--accent);
+		margin-bottom: 0.75rem;
+	}
+
+	.hash {
+		color: var(--accent);
+	}
+
+	.intro {
+		color: var(--text-dim);
+		max-width: 38rem;
+		margin-bottom: 2.5rem;
+	}
+
+	.project-list {
+		display: grid;
+		gap: 1.5rem;
+	}
+</style>

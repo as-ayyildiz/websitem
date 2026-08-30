@@ -1,0 +1,61 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	<div class="wrap bar">
+		<p class="mono line">
+			<span class="dim">$</span> echo "© {year} Ali Sacit Ayyıldız"
+		</p>
+		<div class="links mono">
+			<a href="https://github.com/as-ayyildiz" target="_blank" rel="noopener noreferrer">github</a>
+			<span class="dim">·</span>
+			<a href="https://www.linkedin.com/in/ali-ayyıldız" target="_blank" rel="noopener noreferrer">linkedin</a>
+			<span class="dim">·</span>
+			<a href="mailto:alisacitayyildiz@gmail.com">mail</a>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		border-top: 1px solid var(--border-soft);
+		margin-top: 4rem;
+	}
+
+	.bar {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem 1.5rem;
+		align-items: center;
+		justify-content: space-between;
+		padding: 1.75rem 1.5rem;
+		max-width: 58rem;
+	}
+
+	.line {
+		font-size: 0.8rem;
+		color: var(--text-faint);
+		margin: 0;
+	}
+
+	.dim {
+		color: var(--text-faint);
+	}
+
+	.links {
+		font-size: 0.8rem;
+		display: flex;
+		gap: 0.6rem;
+		align-items: center;
+	}
+
+	.links a {
+		color: var(--text-dim);
+		text-decoration: none;
+	}
+
+	.links a:hover {
+		color: var(--accent-strong);
+	}
+</style>

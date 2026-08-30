@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,500&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+	color-scheme: dark;
+
+	/* surfaces */
+	--bg: #0d0e10;
+	--bg-panel: #17181b;
+	--bg-panel-hover: #1d1f22;
+	--bg-inset: #0a0b0c;
+	--border: #2a2c30;
+	--border-soft: #202226;
+
+	/* text */
+	--text: #e9e6de;
+	--text-dim: #9c988e;
+	--text-faint: #6b6862;
+
+	/* accent: warm amber/copper — refined, not neon-green */
+	--accent: #d68a3c;
+	--accent-strong: #f0a75a;
+	--accent-soft: rgba(214, 138, 60, 0.12);
+	--accent-border: rgba(214, 138, 60, 0.35);
+
+	/* secondary accent: muted sage/teal, used sparingly for links & the tefekkür section */
+	--accent-2: #7fa79a;
+	--accent-2-soft: rgba(127, 167, 154, 0.12);
+
+	/* cybersecurity section identity: cool steel blue */
+	--accent-cyber: #6b93c2;
+	--accent-cyber-soft: rgba(107, 147, 194, 0.12);
+
+	--font-serif: 'Source Serif 4', 'Georgia', serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+	--radius: 4px;
+	--content-width: 46rem;
+
+	--shadow-panel: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background: var(--bg);
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: var(--font-serif);
+	font-size: 1.0625rem;
+	line-height: 1.7;
+	color: var(--text);
+	background:
+		radial-gradient(circle at 1px 1px, rgba(233, 230, 222, 0.055) 1px, transparent 0) 0 0 / 28px 28px,
+		var(--bg);
+	min-height: 100vh;
+	-webkit-font-smoothing: antialiased;
+}
+
+::selection {
+	background: var(--accent-soft);
+	color: var(--accent-strong);
+}
+
+a {
+	color: inherit;
+}
+
+img {
+	max-width: 100%;
+	display: block;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: var(--font-serif);
+	font-weight: 600;
+	line-height: 1.25;
+	margin: 0 0 0.6em;
+	color: var(--text);
+}
+
+p {
+	margin: 0 0 1.1em;
+}
+
+.mono {
+	font-family: var(--font-mono);
+}
+
+/* focus ring, keyboard-only */
+:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 3px;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+	width: 12px;
+}
+::-webkit-scrollbar-track {
+	background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+	background: var(--bg-panel-hover);
+	border: 3px solid var(--bg);
+	border-radius: 8px;
+}
+
+.wrap {
+	max-width: var(--content-width);
+	margin: 0 auto;
+	padding: 0 1.5rem;
+}
+
+.blink-cursor {
+	display: inline-block;
+	width: 0.55em;
+	height: 1em;
+	margin-left: 0.15em;
+	background: var(--accent);
+	vertical-align: text-bottom;
+	animation: blink 1.1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.blink-cursor {
+		animation: none;
+		opacity: 0.6;
+	}
+	* {
+		scroll-behavior: auto !important;
+	}
+}
+
+@keyframes blink {
+	0%,
+	49% {
+		opacity: 1;
+	}
+	50%,
+	100% {
+		opacity: 0;
+	}
+}
+
+html {
+	scroll-behavior: smooth;
+}

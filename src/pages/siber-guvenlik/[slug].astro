@@ -1,0 +1,116 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('siberGuvenlik', ({ data }) => !data.draft);
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formatter = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Layout title={`${post.data.title} — Ali Ayyıldız`} description={post.data.summary}>
+	<main class="wrap section">
+		<p class="date mono">{formatter.format(post.data.date)}</p>
+		<h1>{post.data.title}</h1>
+		{
+			post.data.tags.length > 0 && (
+				<ul class="tags mono">
+					{post.data.tags.map((tag) => (
+						<li>{tag}</li>
+					))}
+				</ul>
+			)
+		}
+		{
+			post.data.image && (
+				<Image
+					class="cover"
+					src={post.data.image}
+					alt={post.data.imageAlt ?? post.data.title}
+					width={720}
+				/>
+			)
+		}
+		<div class="prose">
+			<Content />
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.date {
+		font-size: 0.78rem;
+		color: var(--accent-cyber);
+		margin-bottom: 0.5rem;
+	}
+
+	.tags {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin: 1rem 0 2rem;
+		padding: 0;
+	}
+
+	.tags li {
+		font-size: 0.7rem;
+		color: var(--text-dim);
+		border: 1px solid var(--border);
+		border-radius: 999px;
+		padding: 0.18rem 0.6rem;
+	}
+
+	.cover {
+		display: block;
+		max-width: 100%;
+		height: auto;
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
+		margin: 1.5rem 0 2rem;
+	}
+
+	.prose {
+		max-width: 42rem;
+	}
+
+	.prose :global(img) {
+		max-width: 100%;
+		height: auto;
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
+		margin: 1rem 0;
+	}
+
+	.prose :global(h2) {
+		font-size: 1.35rem;
+		margin-top: 2rem;
+	}
+
+	.prose :global(pre) {
+		background: var(--bg-inset);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		padding: 1rem;
+		overflow-x: auto;
+		font-size: 0.85rem;
+	}
+
+	.prose :global(code) {
+		font-family: var(--font-mono);
+		font-size: 0.9em;
+	}
+
+	.prose :global(a) {
+		color: var(--accent-cyber);
+	}
+</style>

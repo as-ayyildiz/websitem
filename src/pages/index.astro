@@ -1,0 +1,189 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import aliPhoto from '../assets/images/ali.png';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<Layout title="Ali Ayyıldız">
+	<main>
+		<section class="hero wrap">
+			<div class="hero-text">
+				<p class="mono prompt-line">
+					<span class="dim">ali@ayyildiz</span><span class="dim">:~$</span> whoami<span
+						class="blink-cursor"></span>
+				</p>
+				<h1>Ali Sacit Ayyıldız</h1>
+				<p class="tagline mono">Bilgisayar Mühendisliği Öğrencisi · Siber Güvenlik</p>
+				<p class="bio">
+					22 yaşımdayım. Düzce Üniversitesi'nde Bilgisayar Mühendisliği 3. sınıf öğrencisiyim.
+					Orta seviye İngilizce ve başlangıç düzeyinde Arapça biliyorum. Siber güvenlik alanıyla
+					ilgileniyor, vaktimin bir kısmını da okuduklarım üzerine düşünmeye ayırıyorum — bunlardan
+					bazılarını <a class="link-2" href={`${base}tefekkur/`}>Tefekkür Köşesi</a>'nde
+					paylaşıyorum.
+				</p>
+				<p class="bio">
+					Bana <a class="link-2" href={`${base}iletisim/`}>iletişim</a> sayfasındaki bağlantılardan
+					ulaşabilirsiniz.
+				</p>
+			</div>
+			<figure class="hero-photo">
+				<Image src={aliPhoto} alt="Ali Ayyıldız" width={320} height={320} />
+			</figure>
+		</section>
+
+		<section class="wrap section teasers">
+			<a class="teaser projects" href={`${base}projeler/`}>
+				<p class="mono label">~/projeler</p>
+				<h3>Projeler</h3>
+				<p class="teaser-desc">Üzerinde çalıştığım ve emek verdiğim projeler.</p>
+			</a>
+			<a class="teaser cyber" href={`${base}siber-guvenlik/`}>
+				<p class="mono label">~/siber-guvenlik</p>
+				<h3>Siber Güvenlik</h3>
+				<p class="teaser-desc">Aldığım sertifikalar, write-up'larım ve katıldığım CTF'ler.</p>
+			</a>
+			<a class="teaser tefekkur" href={`${base}tefekkur/`}>
+				<p class="mono label">~/tefekkur</p>
+				<h3>Tefekkür Köşesi</h3>
+				<p class="teaser-desc">Okuduğum eserlerden beni durdurup düşündüren satırlar ve pasajlar.</p>
+			</a>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.hero {
+		display: flex;
+		align-items: center;
+		gap: 3rem;
+		padding-top: 4rem;
+		padding-bottom: 2rem;
+		flex-wrap: wrap-reverse;
+	}
+
+	.hero-text {
+		flex: 1 1 22rem;
+		min-width: 0;
+	}
+
+	.prompt-line {
+		font-size: 0.85rem;
+		color: var(--text-dim);
+		margin-bottom: 1rem;
+	}
+
+	h1 {
+		font-size: clamp(2rem, 5vw, 2.75rem);
+		margin-bottom: 0.4rem;
+	}
+
+	.tagline {
+		font-size: 0.85rem;
+		color: var(--accent-strong);
+		margin-bottom: 1.5rem;
+		letter-spacing: 0.01em;
+	}
+
+	.bio {
+		color: var(--text-dim);
+		font-size: 1.02rem;
+	}
+
+	.link-2 {
+		color: var(--accent-2);
+		text-decoration-color: var(--accent-2-soft);
+		text-underline-offset: 3px;
+	}
+
+	.link-2:hover {
+		text-decoration-color: var(--accent-2);
+	}
+
+	.hero-photo {
+		margin: 0;
+		flex: 0 0 auto;
+		text-align: center;
+	}
+
+	.hero-photo :global(img) {
+		width: 11rem;
+		height: 11rem;
+		object-fit: cover;
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
+		box-shadow: var(--shadow-panel);
+	}
+
+	.section {
+		padding: 3rem 1.5rem;
+	}
+
+	.teasers {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+		gap: 1.25rem;
+		padding-top: 1rem;
+	}
+
+	.teaser {
+		display: block;
+		text-decoration: none;
+		padding: 1.5rem;
+		border-radius: var(--radius);
+		border: 1px solid var(--border);
+		background: var(--bg-panel);
+		transition:
+			border-color 0.15s ease,
+			transform 0.15s ease;
+	}
+
+	.teaser:hover {
+		transform: translateY(-2px);
+	}
+
+	.teaser .label {
+		font-size: 0.72rem;
+		margin-bottom: 0.6rem;
+	}
+
+	.teaser h3 {
+		margin-bottom: 0.5rem;
+		font-size: 1.15rem;
+	}
+
+	.teaser-desc {
+		color: var(--text-dim);
+		font-size: 0.92rem;
+		margin: 0;
+	}
+
+	.teaser.projects .label {
+		color: var(--accent);
+	}
+	.teaser.projects:hover {
+		border-color: var(--accent);
+	}
+
+	.teaser.cyber .label {
+		color: var(--accent-cyber);
+	}
+	.teaser.cyber:hover {
+		border-color: var(--accent-cyber);
+	}
+
+	.teaser.tefekkur .label {
+		color: var(--accent-2);
+	}
+	.teaser.tefekkur:hover {
+		border-color: var(--accent-2);
+	}
+
+	@media (max-width: 640px) {
+		.hero {
+			padding-top: 2.5rem;
+			gap: 2rem;
+		}
+	}
+</style>

@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const channels = [
+	{ label: 'GitHub', handle: 'as-ayyildiz', href: 'https://github.com/as-ayyildiz' },
+	{
+		label: 'LinkedIn',
+		handle: 'ali-ayyıldız',
+		href: 'https://www.linkedin.com/in/ali-ayyıldız',
+	},
+	{ label: 'E-posta', handle: 'alisacitayyildiz@gmail.com', href: 'mailto:alisacitayyildiz@gmail.com' },
+];
+---
+
+<Layout title="İletişim — Ali Ayyıldız" description="Ali Ayyıldız ile iletişime geçin.">
+	<main class="wrap section">
+		<p class="mono eyebrow"><span class="hash">#</span> iletisim</p>
+		<h1>İletişim</h1>
+		<p class="intro">Benimle aşağıdaki kanallardan iletişime geçebilirsiniz.</p>
+
+		<ul class="channel-list">
+			{
+				channels.map((c) => (
+					<li>
+						<a class="channel" href={c.href} target="_blank" rel="noopener noreferrer">
+							<span class="arrow mono">→</span>
+							<span class="label">{c.label}</span>
+							<span class="handle mono">{c.handle}</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</main>
+</Layout>
+
+<style>
+	.eyebrow {
+		font-size: 0.85rem;
+		color: var(--accent);
+		margin-bottom: 0.75rem;
+	}
+
+	.hash {
+		color: var(--accent);
+	}
+
+	.intro {
+		color: var(--text-dim);
+		margin-bottom: 2.5rem;
+	}
+
+	.channel-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 0.75rem;
+		max-width: 28rem;
+	}
+
+	.channel {
+		display: flex;
+		align-items: center;
+		gap: 0.85rem;
+		text-decoration: none;
+		background: var(--bg-panel);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		padding: 1rem 1.25rem;
+		transition: border-color 0.15s ease;
+	}
+
+	.channel:hover {
+		border-color: var(--accent);
+	}
+
+	.arrow {
+		color: var(--accent);
+	}
+
+	.label {
+		color: var(--text);
+		font-weight: 600;
+		min-width: 5.5rem;
+	}
+
+	.handle {
+		color: var(--text-dim);
+		font-size: 0.85rem;
+		word-break: break-all;
+	}
+</style>

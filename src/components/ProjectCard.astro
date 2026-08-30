@@ -1,0 +1,202 @@
+---
+import { Image } from 'astro:assets';
+import type { Project } from '../data/projects';
+
+interface Props {
+	project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="card">
+	<header class="card-head">
+		<div class="title-group">
+			{project.logo && <Image class="logo" src={project.logo} alt="" width={32} height={32} />}
+			<h3>{project.title}</h3>
+		</div>
+		{project.role && <span class="role mono">{project.role}</span>}
+	</header>
+
+	{project.badge && <p class="badge mono">{project.badge}</p>}
+
+	<p class="desc">{project.description}</p>
+
+	{
+		project.highlights && (
+			<ul class="highlights">
+				{project.highlights.map((h) => (
+					<li>
+						<span class="arrow mono">›</span> {h}
+					</li>
+				))}
+			</ul>
+		)
+	}
+
+	<ul class="tech mono">
+		{project.tech.map((t) => <li>{t}</li>)}
+	</ul>
+
+	{
+		project.images && (
+			<div class="gallery">
+				{project.images.map((img) => (
+					<a href={img.src.src} target="_blank" rel="noopener noreferrer">
+						<Image src={img.src} alt={img.alt} width={400} />
+					</a>
+				))}
+			</div>
+		)
+	}
+
+	{
+		project.links && (
+			<div class="links mono">
+				{project.links.map((link) => (
+					<a href={link.href} target="_blank" rel="noopener noreferrer">
+						{link.label} ↗
+					</a>
+				))}
+			</div>
+		)
+	}
+</article>
+
+<style>
+	.card {
+		background: var(--bg-panel);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		padding: 1.75rem 1.75rem 1.5rem;
+		box-shadow: var(--shadow-panel);
+	}
+
+	.card-head {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0.5rem 1rem;
+	}
+
+	.title-group {
+		display: flex;
+		align-items: center;
+		gap: 0.65rem;
+	}
+
+	.logo {
+		width: 1.75rem;
+		height: 1.75rem;
+		object-fit: cover;
+		border-radius: 50%;
+		flex-shrink: 0;
+	}
+
+	.card-head h3 {
+		margin: 0;
+		font-size: 1.25rem;
+	}
+
+	.role {
+		font-size: 0.72rem;
+		color: var(--accent-strong);
+		background: var(--accent-soft);
+		border: 1px solid var(--accent-border);
+		padding: 0.2rem 0.55rem;
+		border-radius: 999px;
+		white-space: nowrap;
+	}
+
+	.badge {
+		font-size: 0.78rem;
+		color: var(--accent-strong);
+		margin: 0.5rem 0 1rem;
+	}
+
+	.desc {
+		color: var(--text);
+		margin-bottom: 0.9rem;
+	}
+
+	.highlights {
+		list-style: none;
+		margin: 0 0 1.25rem;
+		padding: 0;
+		display: grid;
+		gap: 0.55rem;
+	}
+
+	.highlights li {
+		color: var(--text-dim);
+		font-size: 0.95rem;
+		line-height: 1.55;
+	}
+
+	.arrow {
+		color: var(--accent);
+	}
+
+	.tech {
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin: 0;
+		padding: 0;
+	}
+
+	.tech li {
+		font-size: 0.72rem;
+		color: var(--text-dim);
+		border: 1px solid var(--border);
+		border-radius: 999px;
+		padding: 0.22rem 0.65rem;
+	}
+
+	.gallery {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+		gap: 0.6rem;
+		margin-top: 1.25rem;
+	}
+
+	.gallery a {
+		display: block;
+		border-radius: var(--radius);
+		overflow: hidden;
+		border: 1px solid var(--border);
+	}
+
+	.gallery :global(img) {
+		display: block;
+		width: 100%;
+		height: 7rem;
+		object-fit: cover;
+		transition: transform 0.2s ease;
+	}
+
+	.gallery a:hover :global(img) {
+		transform: scale(1.05);
+	}
+
+	.links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 1.25rem;
+		margin-top: 1.25rem;
+		padding-top: 1.1rem;
+		border-top: 1px solid var(--border-soft);
+	}
+
+	.links a {
+		font-size: 0.8rem;
+		color: var(--accent-strong);
+		text-decoration: none;
+	}
+
+	.links a:hover {
+		text-decoration: underline;
+	}
+</style>

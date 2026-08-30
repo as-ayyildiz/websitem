@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+const allQuotes = await getCollection('tefekkur', ({ data }) => !data.draft);
+const sorted = allQuotes.sort((a, b) => {
+	const da = a.data.date?.valueOf() ?? 0;
+	const db = b.data.date?.valueOf() ?? 0;
+	return db - da;
+});
+
+const quotes = await Promise.all(
+	sorted.map(async (entry) => ({
+		entry,
+		Content: (await render(entry)).Content,
+	})),
+);
+---
+
+<Layout
+	title="Tefekkür Köşesi — Ali Ayyıldız"
+	description="Okuduğum eserlerden beni durdurup düşündüren satırlar ve pasajlar."
+>
+	<main class="wrap section">
+		<p class="mono eyebrow"><span class="hash">#</span> tefekkur</p>
+		<h1>Tefekkür Köşesi</h1>
+		<p class="intro">
+			Okuduğum kitaplardan zihnimde iz bırakan, beni durdurup düşündüren satırlar ve pasajlar.
+			Zaman zaman buraya ekleyeceğim.
+		</p>
+
+		{
+			quotes.length === 0 ? (
+				<p class="empty mono">Henüz bir alıntı eklenmedi — yakında burada olacak.</p>
+			) : (
+				<ul class="quote-list">
+					{quotes.map(({ entry, Content }) => (
+						<li class="quote-card">
+							<div class="quote-text">
+								<Content />
+							</div>
+							<p class="attribution mono">
+								— {entry.data.author}
+								{entry.data.work && <span class="work"> · {entry.data.work}</span>}
+							</p>
+							{entry.data.note && <p class="note">{entry.data.note}</p>}
+						</li>
+					))}
+				</ul>
+			)
+		}
+	</main>
+</Layout>
+
+<style>
+	.eyebrow {
+		font-size: 0.85rem;
+		color: var(--accent-2);
+		margin-bottom: 0.75rem;
+	}
+
+	.hash {
+		color: var(--accent-2);
+	}
+
+	.intro {
+		color: var(--text-dim);
+		max-width: 38rem;
+		margin-bottom: 2.5rem;
+	}
+
+	.empty {
+		color: var(--text-faint);
+		font-size: 0.9rem;
+		padding: 2rem 0;
+	}
+
+	.quote-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.quote-card {
+		border-left: 2px solid var(--accent-2);
+		background: var(--bg-panel);
+		border-radius: 0 var(--radius) var(--radius) 0;
+		padding: 1.5rem 1.75rem;
+	}
+
+	.quote-text {
+		font-style: italic;
+		font-size: 1.15rem;
+		line-height: 1.6;
+	}
+
+	.quote-text :global(p) {
+		margin: 0 0 0.75rem;
+	}
+
+	.quote-text :global(p:first-child::before) {
+		content: '“';
+	}
+
+	.quote-text :global(p:last-child::after) {
+		content: '”';
+	}
+
+	.attribution {
+		font-size: 0.78rem;
+		color: var(--accent-2);
+		margin: 0.5rem 0 0;
+	}
+
+	.work {
+		color: var(--text-dim);
+	}
+
+	.note {
+		margin-top: 0.6rem;
+		font-size: 0.9rem;
+		color: var(--text-dim);
+	}
+</style>
