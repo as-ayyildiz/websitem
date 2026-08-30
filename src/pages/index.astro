@@ -47,24 +47,9 @@ const base = import.meta.env.BASE_URL;
 							>)-[~]</span
 						>
 					</p>
-					<p class="line"><span class="arrow">└─$</span> vim exploit.py</p>
-					<p class="line">
-						<span class="path">┌──(<span class="user">ali</span>㉿<span class="host"
-								>kali</span
-							>)-[~]</span
-						>
-					</p>
-					<p class="line">
-						<span class="arrow">└─$</span> python3 exploit.py --target 10.10.10.5
-					</p>
-					<p class="line dim">[*] Payload gönderiliyor...</p>
-					<p class="line ok">[+] Shell alındı: ali@target</p>
-					<p class="line"><span class="shell-user">ali@target:~$</span> sudo -l</p>
-					<p class="line"><span class="shell-user">ali@target:~$</span> ./privesc.sh</p>
-					<p class="line ok">[+] root shell alındı.</p>
+					<p class="line"><span class="arrow">└─$</span> ./exploit.sh target.local</p>
 					<p class="line"><span class="shell-root">root@target:~#</span> cat /etc/motd</p>
 					<div class="motd">
-						<p class="crit">[!] CRITICAL</p>
 						<p class="quote">
 							"Âhirette seni kurtaracak bir eserin olmadığı takdirde, fâni dünyada bıraktığın
 							eserlere de kıymet verme."
@@ -223,19 +208,6 @@ const base = import.meta.env.BASE_URL;
 		color: var(--accent-strong);
 	}
 
-	.line.dim {
-		color: var(--text-faint);
-	}
-
-	.line.ok {
-		color: #4caf6e;
-		margin-bottom: 0.6rem;
-	}
-
-	.shell-user {
-		color: var(--accent-strong);
-	}
-
 	.shell-root {
 		color: #e5484d;
 	}
@@ -245,15 +217,8 @@ const base = import.meta.env.BASE_URL;
 		padding: 1.1rem 1.25rem;
 		background: var(--bg-panel);
 		border: 1px solid var(--border);
-		border-left: 3px solid #e5484d;
+		border-left: 3px solid var(--accent-2);
 		border-radius: 0 var(--radius) var(--radius) 0;
-	}
-
-	.crit {
-		margin: 0 0 0.7rem;
-		color: #e5484d;
-		font-weight: 700;
-		letter-spacing: 0.02em;
 	}
 
 	.quote {

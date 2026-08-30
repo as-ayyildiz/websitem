@@ -22,11 +22,6 @@ export const projects: Project[] = [
 		title: 'Sanal Transkript Hesaplama Uygulaması',
 		description:
 			'Düzce Üniversitesi Bilgisayar Mühendisliği öğrencileri için geliştirdiğim, OBS\'deki sanal transkript hesaplama aracının eksik gördüğüm yönlerini tamamlayan bir uygulama. Öğrencinin alttan aldığı veya o dönem aldığı dersleri de hesaba katabiliyor; "Ders Ekle" butonuyla istenen herhangi bir ders hesaplamaya dahil edilebiliyor.',
-		highlights: [
-			'Bologna yılını seçtikten sonra OBS\'den kopyalanan resmi transkriptle harf notlarını hızlıca aktarma, ya da manuel giriş',
-			'Alttan alınan veya dönem içi eklenen derslerin hesaplamaya dahil edilebilmesi',
-			'İlerleyen süreçte tüm bölümlere genişletilmesi planlanıyor',
-		],
 		links: [
 			{ label: 'Uygulamayı dene', href: 'https://transkript-hesaplama.vercel.app/' },
 			{ label: 'GitHub', href: 'https://github.com/as-ayyildiz/transkript-hesaplama' },

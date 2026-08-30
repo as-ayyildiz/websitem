@@ -34,7 +34,15 @@ const { project } = Astro.props;
 	}
 
 	{
-		project.images && (
+		project.images && project.images.length === 1 && (
+			<a class="cover-shot" href={project.images[0].src.src} target="_blank" rel="noopener noreferrer">
+				<Image src={project.images[0].src} alt={project.images[0].alt} width={1000} />
+			</a>
+		)
+	}
+
+	{
+		project.images && project.images.length > 1 && (
 			<div class="gallery">
 				{project.images.map((img) => (
 					<a href={img.src.src} target="_blank" rel="noopener noreferrer">
@@ -73,6 +81,7 @@ const { project } = Astro.props;
 		align-items: baseline;
 		justify-content: space-between;
 		gap: 0.5rem 1rem;
+		margin-bottom: 1rem;
 	}
 
 	.title-group {
@@ -92,6 +101,7 @@ const { project } = Astro.props;
 	.card-head h3 {
 		margin: 0;
 		font-size: 1.25rem;
+		color: var(--accent-strong);
 	}
 
 	.badge {
@@ -121,6 +131,25 @@ const { project } = Astro.props;
 
 	.arrow {
 		color: var(--accent);
+	}
+
+	.cover-shot {
+		display: block;
+		margin-top: 1.25rem;
+		border-radius: var(--radius);
+		overflow: hidden;
+		border: 1px solid var(--border);
+	}
+
+	.cover-shot :global(img) {
+		display: block;
+		width: 100%;
+		height: auto;
+		transition: transform 0.2s ease;
+	}
+
+	.cover-shot:hover :global(img) {
+		transform: scale(1.02);
 	}
 
 	.gallery {
