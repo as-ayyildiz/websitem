@@ -2,7 +2,7 @@
 title: "Burp Suite ile İlk Write-Up Çalışmam"
 summary: "Intruder modülüyle wordlist tabanlı parola tespiti ve Repeater modülüyle HTTP metod manipülasyonu üzerine hazırladığım ilk write-up."
 date: 2026-08-30
-tags: ["Burp Suite", "writeup"]
+category: yazi
 ---
 
 Burp Suite üzerine hazırladığım ilk write-up çalışmamı GitHub'a ekledim.

@@ -1,8 +1,8 @@
 ---
 title: "CORE — Certified Cybersecurity Foundations"
 summary: "Hackviser'ın CORE eğitimini tamamlayarak Cyber Kill Chain'den OWASP Top 10'a, yapay zeka ve LLM güvenliğine kadar geniş bir temel kazandım."
-date: 2026-08-30
-tags: ["Hackviser", "CORE", "sertifika"]
+date: 2026-08-03
+category: yolculuk
 image: ./core-sertifikasi.png
 imageAlt: "CORE — Certified Cybersecurity Foundations sertifikası"
 ---

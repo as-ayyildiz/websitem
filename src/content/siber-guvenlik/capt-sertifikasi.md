@@ -2,7 +2,7 @@
 title: "CAPT — Certified Associate Penetration Tester"
 summary: "Hackviser platformundaki eğitim, laboratuvar ve gerçek dünya senaryolarını tamamlayarak CAPT sertifikasını aldım."
 date: 2026-08-29
-tags: ["Hackviser", "CAPT", "pentest", "sertifika"]
+category: yolculuk
 image: ./capt-sertifikasi.png
 imageAlt: "CAPT — Certified Associate Penetration Tester sertifikası"
 ---

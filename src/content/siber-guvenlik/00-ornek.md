@@ -2,7 +2,7 @@
 title: "Örnek Yazı"
 summary: "Bu, bir siber güvenlik yazısının nasıl görüneceğine dair bir örnektir. src/content/siber-guvenlik/ klasörüne yeni bir .md dosyası ekleyerek gerçek yazılarını yayınlayabilirsin."
 date: 2026-08-30
-tags: ["örnek", "nasıl-eklenir"]
+category: yazi
 draft: true
 ---
 

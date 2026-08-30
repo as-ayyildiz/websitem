@@ -29,8 +29,50 @@ const base = import.meta.env.BASE_URL;
 				</p>
 			</div>
 			<figure class="hero-photo">
-				<Image src={aliPhoto} alt="Ali Ayyıldız" width={320} height={320} />
+				<Image src={aliPhoto} alt="Ali Ayyıldız" width={480} height={480} />
 			</figure>
+		</section>
+
+		<section class="wrap section">
+			<div class="terminal">
+				<div class="term-bar">
+					<span class="dot red"></span><span class="dot yellow"></span><span class="dot green"
+					></span>
+					<span class="term-title mono">root@target: ~</span>
+				</div>
+				<div class="term-body mono">
+					<p class="line">
+						<span class="path">┌──(<span class="user">ali</span>㉿<span class="host"
+								>kali</span
+							>)-[~]</span
+						>
+					</p>
+					<p class="line"><span class="arrow">└─$</span> vim exploit.py</p>
+					<p class="line">
+						<span class="path">┌──(<span class="user">ali</span>㉿<span class="host"
+								>kali</span
+							>)-[~]</span
+						>
+					</p>
+					<p class="line">
+						<span class="arrow">└─$</span> python3 exploit.py --target 10.10.10.5
+					</p>
+					<p class="line dim">[*] Payload gönderiliyor...</p>
+					<p class="line ok">[+] Shell alındı: ali@target</p>
+					<p class="line"><span class="shell-user">ali@target:~$</span> sudo -l</p>
+					<p class="line"><span class="shell-user">ali@target:~$</span> ./privesc.sh</p>
+					<p class="line ok">[+] root shell alındı.</p>
+					<p class="line"><span class="shell-root">root@target:~#</span> cat /etc/motd</p>
+					<div class="motd">
+						<p class="crit">[!] CRITICAL</p>
+						<p class="quote">
+							"Âhirette seni kurtaracak bir eserin olmadığı takdirde, fâni dünyada bıraktığın
+							eserlere de kıymet verme."
+						</p>
+						<a class="cite" href={`${base}tefekkur/`}>— Mesnevi-i Nuriye</a>
+					</div>
+				</div>
+			</div>
 		</section>
 
 		<section class="wrap section teasers">
@@ -108,8 +150,8 @@ const base = import.meta.env.BASE_URL;
 	}
 
 	.hero-photo :global(img) {
-		width: 11rem;
-		height: 11rem;
+		width: 16rem;
+		height: 16rem;
 		object-fit: cover;
 		border-radius: var(--radius);
 		border: 1px solid var(--border);
@@ -118,6 +160,120 @@ const base = import.meta.env.BASE_URL;
 
 	.section {
 		padding: 3rem 1.5rem;
+	}
+
+	.terminal {
+		background: var(--bg-inset);
+		border: 1px solid var(--border);
+		border-radius: var(--radius);
+		overflow: hidden;
+		box-shadow: var(--shadow-panel);
+	}
+
+	.term-bar {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		padding: 0.65rem 0.9rem;
+		background: var(--bg-panel);
+		border-bottom: 1px solid var(--border-soft);
+	}
+
+	.dot {
+		width: 0.65rem;
+		height: 0.65rem;
+		border-radius: 50%;
+		display: inline-block;
+	}
+
+	.dot.red {
+		background: #e5484d;
+	}
+	.dot.yellow {
+		background: #e5a93f;
+	}
+	.dot.green {
+		background: #4caf6e;
+	}
+
+	.term-title {
+		margin-left: 0.6rem;
+		font-size: 0.72rem;
+		color: var(--text-faint);
+	}
+
+	.term-body {
+		padding: 1.5rem;
+		font-size: 0.85rem;
+		line-height: 1.7;
+	}
+
+	.line {
+		margin: 0;
+		color: var(--text-dim);
+	}
+
+	.path,
+	.arrow {
+		color: var(--accent-cyber);
+	}
+
+	.user,
+	.host {
+		color: var(--accent-strong);
+	}
+
+	.line.dim {
+		color: var(--text-faint);
+	}
+
+	.line.ok {
+		color: #4caf6e;
+		margin-bottom: 0.6rem;
+	}
+
+	.shell-user {
+		color: var(--accent-strong);
+	}
+
+	.shell-root {
+		color: #e5484d;
+	}
+
+	.motd {
+		margin-top: 0.9rem;
+		padding: 1.1rem 1.25rem;
+		background: var(--bg-panel);
+		border: 1px solid var(--border);
+		border-left: 3px solid #e5484d;
+		border-radius: 0 var(--radius) var(--radius) 0;
+	}
+
+	.crit {
+		margin: 0 0 0.7rem;
+		color: #e5484d;
+		font-weight: 700;
+		letter-spacing: 0.02em;
+	}
+
+	.quote {
+		font-family: var(--font-mono);
+		color: var(--text);
+		font-size: 0.88rem;
+		line-height: 1.7;
+		margin: 0 0 0.6rem;
+	}
+
+	.cite {
+		display: inline-block;
+		font-family: var(--font-mono);
+		font-size: 0.78rem;
+		color: var(--accent-2);
+		text-decoration: none;
+	}
+
+	.cite:hover {
+		text-decoration: underline;
 	}
 
 	.teasers {

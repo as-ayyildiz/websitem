@@ -22,15 +22,6 @@ const formatter = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'lon
 		<p class="date mono">{formatter.format(post.data.date)}</p>
 		<h1>{post.data.title}</h1>
 		{
-			post.data.tags.length > 0 && (
-				<ul class="tags mono">
-					{post.data.tags.map((tag) => (
-						<li>{tag}</li>
-					))}
-				</ul>
-			)
-		}
-		{
 			post.data.image && (
 				<Image
 					class="cover"
@@ -51,23 +42,6 @@ const formatter = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'lon
 		font-size: 0.78rem;
 		color: var(--accent-cyber);
 		margin-bottom: 0.5rem;
-	}
-
-	.tags {
-		list-style: none;
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
-		margin: 1rem 0 2rem;
-		padding: 0;
-	}
-
-	.tags li {
-		font-size: 0.7rem;
-		color: var(--text-dim);
-		border: 1px solid var(--border);
-		border-radius: 999px;
-		padding: 0.18rem 0.6rem;
 	}
 
 	.cover {

@@ -40,8 +40,10 @@ const quotes = await Promise.all(
 								<Content />
 							</div>
 							<p class="attribution mono">
-								— {entry.data.author}
-								{entry.data.work && <span class="work"> · {entry.data.work}</span>}
+								— {entry.data.work ?? entry.data.author}
+								{entry.data.work && entry.data.author && (
+									<span class="work"> · {entry.data.author}</span>
+								)}
 							</p>
 							{entry.data.note && <p class="note">{entry.data.note}</p>}
 						</li>

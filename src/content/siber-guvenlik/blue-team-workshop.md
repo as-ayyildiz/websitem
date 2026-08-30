@@ -2,7 +2,7 @@
 title: "PURE7 Blue Team Workshop"
 summary: "22-25 Temmuz 2026 tarihleri arasında SOC operasyonları, threat intelligence, threat hunting, zararlı yazılım analizi ve olay müdahalesi üzerine 12 saatlik eğitim."
 date: 2026-07-25
-tags: ["Blue Team", "PURE7", "SOC"]
+category: yolculuk
 ---
 
 22-25 Temmuz tarihleri arasında PURE7 ekibi tarafından verilen 12 saatlik **Blue Team** eğitimini tamamladım. SOC Operasyonları, Threat Intelligence, Threat Hunting, Zararlı Yazılım Analizi ve Olay Müdahale alanlarında kıymetli teknik bilgiler edindim.

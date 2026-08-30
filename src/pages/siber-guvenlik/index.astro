@@ -6,19 +6,64 @@ import { certificates } from '../../data/certificates';
 const base = import.meta.env.BASE_URL;
 
 const allPosts = await getCollection('siberGuvenlik', ({ data }) => !data.draft);
-const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const journey = allPosts
+	.filter((p) => p.data.category === 'yolculuk')
+	.sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
+
+const articles = allPosts
+	.filter((p) => p.data.category === 'yazi')
+	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const formatter = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
 
 <Layout
 	title="Siber Güvenlik — Ali Ayyıldız"
-	description="CTF çözümleri, güvenlik notları ve üzerinde çalıştığım konular."
+	description="Yolculuğum, sertifikalarım, notlarım ve üzerinde çalıştığım konular."
 >
 	<main class="wrap section">
 		<p class="mono eyebrow"><span class="hash">#</span> siber-guvenlik</p>
 		<h1>Siber Güvenlik</h1>
-		<p class="intro">CTF çözümlerim, güvenlik notlarım ve üzerinde çalıştığım konular.</p>
+		<p class="intro">Yolculuğum, sertifikalarım, notlarım ve üzerinde çalıştığım konular.</p>
+
+		<h2 class="subhead mono"><span class="hash">//</span> siber güvenlik yolculuğum</h2>
+		{
+			journey.length === 0 ? (
+				<p class="empty mono">Henüz bir kayıt eklenmedi — yakında burada olacak.</p>
+			) : (
+				<ul class="post-list">
+					{journey.map((post) => (
+						<li>
+							<a class="post-card" href={`${base}siber-guvenlik/${post.id}/`}>
+								<p class="date mono">{formatter.format(post.data.date)}</p>
+								<h3>{post.data.title}</h3>
+								<p class="summary">{post.data.summary}</p>
+							</a>
+						</li>
+					))}
+				</ul>
+			)
+		}
+
+		<h2 class="subhead mono"><span class="hash">//</span> yazılar</h2>
+		{
+			articles.length === 0 ? (
+				<p class="empty mono">Henüz bir yazı eklenmedi — yakında burada olacak.</p>
+			) : (
+				<ul class="post-list">
+					{articles.map((post) => (
+						<li>
+							<a class="post-card" href={`${base}siber-guvenlik/${post.id}/`}>
+								<p class="date mono">{formatter.format(post.data.date)}</p>
+								<h3>{post.data.title}</h3>
+								<p class="summary">{post.data.summary}</p>
+							</a>
+						</li>
+					))}
+				</ul>
+			)
+		}
 
 		<h2 class="subhead mono"><span class="hash">//</span> sertifikalar</h2>
 		<ul class="cert-grid">
@@ -34,32 +79,6 @@ const formatter = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'lon
 				))
 			}
 		</ul>
-
-		<h2 class="subhead mono"><span class="hash">//</span> yazılar</h2>
-		{
-			posts.length === 0 ? (
-				<p class="empty mono">Henüz bir yazı eklenmedi — yakında burada olacak.</p>
-			) : (
-				<ul class="post-list">
-					{posts.map((post) => (
-						<li>
-							<a class="post-card" href={`${base}siber-guvenlik/${post.id}/`}>
-								<p class="date mono">{formatter.format(post.data.date)}</p>
-								<h3>{post.data.title}</h3>
-								<p class="summary">{post.data.summary}</p>
-								{post.data.tags.length > 0 && (
-									<ul class="tags mono">
-										{post.data.tags.map((tag) => (
-											<li>{tag}</li>
-										))}
-									</ul>
-								)}
-							</a>
-						</li>
-					))}
-				</ul>
-			)
-		}
 	</main>
 </Layout>
 
@@ -93,7 +112,7 @@ const formatter = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'lon
 
 	.cert-grid {
 		list-style: none;
-		margin: 0 0 3rem;
+		margin: 0;
 		padding: 0;
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
@@ -128,12 +147,12 @@ const formatter = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'lon
 	.empty {
 		color: var(--text-faint);
 		font-size: 0.9rem;
-		padding: 2rem 0;
+		padding: 1rem 0 2rem;
 	}
 
 	.post-list {
 		list-style: none;
-		margin: 0;
+		margin: 0 0 3rem;
 		padding: 0;
 		display: grid;
 		gap: 1.25rem;
@@ -167,23 +186,6 @@ const formatter = new Intl.DateTimeFormat('tr-TR', { day: 'numeric', month: 'lon
 	.summary {
 		color: var(--text-dim);
 		font-size: 0.95rem;
-		margin: 0 0 0.75rem;
-	}
-
-	.tags {
-		list-style: none;
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
 		margin: 0;
-		padding: 0;
-	}
-
-	.tags li {
-		font-size: 0.7rem;
-		color: var(--text-dim);
-		border: 1px solid var(--border);
-		border-radius: 999px;
-		padding: 0.18rem 0.6rem;
 	}
 </style>
